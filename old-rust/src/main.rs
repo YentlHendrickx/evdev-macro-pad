@@ -19,10 +19,10 @@ where
     loop {
         for event in device.fetch_events()? {
             match event.destructure() {
-                EventSummary::Key(_, KeyCode::KEY_VOLUMEUP, 1) => {
+                EventSummary::Key(_, KeyCode::KEY_K, 1) => {
                     on_volume(VolumeAction::Up);
                 }
-                EventSummary::Key(_, KeyCode::KEY_VOLUMEDOWN, 1) => {
+                EventSummary::Key(_, KeyCode::KEY_J, 1) => {
                     on_volume(VolumeAction::Down);
                 }
                 _ => {}
@@ -83,7 +83,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut zoom = ZoomController::new();
 
     // TODO: Make event_id configurable -> device selection or just poll all devices?
-    capture_input_events(10, |action| {
+    capture_input_events(7, |action| {
         zoom.handle(action);
     })?;
 
